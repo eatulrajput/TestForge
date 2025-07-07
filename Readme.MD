@@ -1,6 +1,9 @@
+![Version](https://img.shields.io/badge/version-v1.0.0-blue)
+
 # TestForge: A C++ Unit Test Generator using LLM
 
 This project automatically generates, refines, builds, and evaluates unit tests for a given C++ source file using a Groq (Model: llama3-70b-8192), you can also use a self-hosted LLM (e.g., LLaMA or Ollama). I didn't used self hosted LLM because of lack of hardware resources. My PC wasn't able to handle model, So, I used Groq API here. It follows a defined pipeline controlled by YAML instruction files and integrates with Google Test for building and test coverage analysis.
+
 
 
 ## Features

@@ -1,0 +1,39 @@
+task_type: generate_unit_tests
+
+objective:
+  - Generate Google Test-based unit tests for the given C++ function.
+  - Ensure correctness, coverage, and compatibility with g++.
+  - The source implementation file must NOT be modified.
+  - Target only one function per test file; the function name should match the source exactly.
+
+assumptions:
+  - The source (`main.cpp`) is already compiled alongside the tests.
+  - Header files like "main.h" must NOT be included.
+  - Tests will be compiled using Google Test with standard C++ support.
+
+constraints:
+  - Do NOT include "main.cpp" or "main.h" in any way.
+  - Do NOT redefine the function being tested.
+  - Use only standard headers and `<gtest/gtest.h>`.
+  - Avoid STL containers unless strictly necessary.
+  - Avoid all concurrency features (e.g., threads, mutexes).
+  - Each test must belong to a named test suite: `<FunctionName>Test`.
+
+test_guidelines:
+  - Provide a minimal but complete test file.
+  - Use `extern` declaration for the target function:
+      - Example: `extern int add(int, int);`
+  - Include test cases for:
+      - Positive inputs
+      - Negative inputs
+      - Zero handling
+      - Boundary values (e.g., `INT_MAX`, `INT_MIN`)
+      - Edge cases (e.g., overflow, underflow where applicable)
+  - Use `EXPECT_` macros for validation; prefer `EXPECT_EQ`, `EXPECT_NE`, etc.
+  - Use `TEST()` or `TEST_F()` as appropriate (no `ASSERT_` unless required).
+  - Include a `main()` only if `gtest_main` is not linked.
+
+output_format:
+  - Output a complete C++ file with valid Google Test syntax.
+  - Do NOT include markdown, comments, or explanation.
+  - The file must compile with: `g++ -lgtest -lgtest_main -pthread`

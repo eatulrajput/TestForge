@@ -1,0 +1,37 @@
+# Compiled object files
+*.o
+
+# Executables
+*.out
+a.out
+unit_test_exec
+
+# Coverage data files
+*.gcda
+*.gcno
+*.gcov
+
+# Build logs
+build_logs/
+
+# LLM-generated test files
+tests/test_main.cpp
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE/editor configs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Backup files
+*~
+*.bak
+.env

@@ -1,0 +1,42 @@
+task_type: final_build_fix
+
+objective:
+  - Resolve any remaining build errors in the generated test file.
+  - Ensure the test file compiles and links successfully using Google Test.
+
+input:
+  - Last generated `test_main.cpp` file (with build issues)
+  - Final build error logs
+  - Original implementation (`main.cpp`) is unchanged and excluded from edits
+
+compiler_settings:
+  - Use: g++ -std=c++17 -lgtest -lgtest_main -pthread
+
+strategy:
+  - Declare any missing function prototypes (e.g., `extern int add(int, int);`)
+  - Fix undeclared identifiers, missing includes, or invalid literals
+  - Ensure Google Test test suite structure is valid
+  - Provide a main function if not linking with `-lgtest_main`
+
+allowed_actions:
+  - Add missing includes (e.g., `<climits>`, `<cmath>`)
+  - Insert correct `extern` declarations for functions under test
+  - Correct or remove unreachable/invalid test cases
+  - Rename or restructure test suites for consistency and uniqueness
+  - Insert a valid `main()` function if needed
+
+refinement_tasks:
+  - Fix all `g++` compile-time errors found in the final logs
+  - Keep test logic unchanged where possible
+  - Do NOT test for undefined behavior (e.g., signed int overflow)
+  - Ensure test cases are logically grouped and formatted
+
+strict_constraints:
+  - Do NOT modify or include implementation files (`main.cpp`, `main.h`)
+  - Do NOT use threads, mutexes, STL containers, or non-standard libraries
+  - Do NOT include markdown, explanations, or comments
+
+output_format:
+  - Output must be a valid `.cpp` file containing only fixed Google Test test cases
+  - The test file must compile and link successfully using:
+    `g++ test_main.cpp src/main.cpp -lgtest -lgtest_main -pthread`
